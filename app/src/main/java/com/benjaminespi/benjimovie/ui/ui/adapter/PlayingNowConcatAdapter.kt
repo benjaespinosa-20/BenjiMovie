@@ -1,12 +1,10 @@
-package com.benjaminespi.benjimovie.ui.adapters.concat
+package com.benjaminespi.benjimovie.ui.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.benjaminespi.benjimovie.databinding.PlayingnowMovieRowBinding
-import com.benjaminespi.benjimovie.databinding.PopularMovieRowBinding
-import com.benjaminespi.benjimovie.ui.adapters.MovieAdapter
-import com.benjaminespi.benjimovie.ui.core.BaseConcatHolder
+import com.benjaminespi.benjimovie.ui.utils.BaseConcatHolder
 
 class PlayingNowConcatAdapter (private val moviesAdapter: MovieAdapter): RecyclerView.Adapter<BaseConcatHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseConcatHolder<*> {

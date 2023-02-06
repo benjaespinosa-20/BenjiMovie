@@ -1,9 +1,9 @@
-package com.benjaminespi.benjimovie.ui.presentation
+package com.benjaminespi.benjimovie.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.benjaminespi.benjimovie.ui.core.Resource
+import com.benjaminespi.benjimovie.ui.utils.Resource
 import com.benjaminespi.benjimovie.ui.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
 

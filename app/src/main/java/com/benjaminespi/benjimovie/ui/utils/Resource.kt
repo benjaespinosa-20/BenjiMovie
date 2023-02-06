@@ -1,4 +1,4 @@
-package com.benjaminespi.benjimovie.ui.core
+package com.benjaminespi.benjimovie.ui.utils
 
 import java.lang.Exception
 

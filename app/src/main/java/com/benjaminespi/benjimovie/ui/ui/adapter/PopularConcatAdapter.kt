@@ -1,11 +1,10 @@
-package com.benjaminespi.benjimovie.ui.adapters.concat
+package com.benjaminespi.benjimovie.ui.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.benjaminespi.benjimovie.databinding.PopularMovieRowBinding
-import com.benjaminespi.benjimovie.ui.adapters.MovieAdapter
-import com.benjaminespi.benjimovie.ui.core.BaseConcatHolder
+import com.benjaminespi.benjimovie.ui.utils.BaseConcatHolder
 
 class PopularConcatAdapter(private val moviesAdapter: MovieAdapter): RecyclerView.Adapter<BaseConcatHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseConcatHolder<*> {
@@ -21,7 +20,8 @@ class PopularConcatAdapter(private val moviesAdapter: MovieAdapter): RecyclerVie
 
     override fun getItemCount(): Int = 1
 
-    private inner class ConcatViewHolder(val binding: PopularMovieRowBinding):BaseConcatHolder<MovieAdapter>(binding.root){
+    private inner class ConcatViewHolder(val binding: PopularMovieRowBinding):
+        BaseConcatHolder<MovieAdapter>(binding.root){
         override fun bind(adapter: MovieAdapter) {
             binding.rvPopularMovie.adapter = adapter
         }

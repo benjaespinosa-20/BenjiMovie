@@ -1,7 +1,6 @@
-package com.benjaminespi.benjimovie.ui.movie
+package com.benjaminespi.benjimovie.ui.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -10,24 +9,26 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.benjaminespi.benjimovie.R
 import com.benjaminespi.benjimovie.databinding.FragmentMovieBinding
-import com.benjaminespi.benjimovie.ui.adapters.MovieAdapter
-import com.benjaminespi.benjimovie.ui.adapters.concat.PlayingNowConcatAdapter
-import com.benjaminespi.benjimovie.ui.adapters.concat.PopularConcatAdapter
-import com.benjaminespi.benjimovie.ui.core.Resource
+import com.benjaminespi.benjimovie.ui.utils.Resource
 import com.benjaminespi.benjimovie.ui.data.model.Movie
 import com.benjaminespi.benjimovie.ui.data.remote.MovieDataSource
-import com.benjaminespi.benjimovie.ui.presentation.MovieViewModel
-import com.benjaminespi.benjimovie.ui.presentation.MovieViewModelFactory
+import com.benjaminespi.benjimovie.ui.viewmodel.MovieViewModel
+import com.benjaminespi.benjimovie.ui.viewmodel.MovieViewModelFactory
 import com.benjaminespi.benjimovie.ui.repository.MovieRepositoryImplement
 import com.benjaminespi.benjimovie.ui.repository.RetrofitClient
+import com.benjaminespi.benjimovie.ui.ui.adapter.MovieAdapter
+import com.benjaminespi.benjimovie.ui.ui.adapter.PlayingNowConcatAdapter
+import com.benjaminespi.benjimovie.ui.ui.adapter.PopularConcatAdapter
 
 class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieClickListener {
     private lateinit var binding: FragmentMovieBinding
 
     //inyeccion de dependencias
-    private val viewModel by viewModels<MovieViewModel>{MovieViewModelFactory(MovieRepositoryImplement(
+    private val viewModel by viewModels<MovieViewModel>{
+        MovieViewModelFactory(MovieRepositoryImplement(
         MovieDataSource(RetrofitClient.webservice)
-    ))}
+    ))
+    }
 
     private lateinit var concatAdapter: ConcatAdapter
 

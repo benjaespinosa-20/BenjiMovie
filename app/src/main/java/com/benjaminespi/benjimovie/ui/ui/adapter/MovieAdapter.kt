@@ -1,4 +1,4 @@
-package com.benjaminespi.benjimovie.ui.adapters
+package com.benjaminespi.benjimovie.ui.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.benjaminespi.benjimovie.databinding.MovieItemBinding
-import com.benjaminespi.benjimovie.ui.core.BaseViewHolder
+import com.benjaminespi.benjimovie.ui.utils.BaseViewHolder
 import com.benjaminespi.benjimovie.ui.data.model.Movie
 import com.bumptech.glide.Glide
 
-class MovieAdapter(private val movieList: List<Movie>, private val itemClickListener: OnMovieClickListener ): RecyclerView.Adapter<BaseViewHolder<*>>() {
+class MovieAdapter(private val movieList: List<Movie>, private val itemClickListener: OnMovieClickListener): RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnMovieClickListener{
         fun onMovieClick(movie: Movie)
