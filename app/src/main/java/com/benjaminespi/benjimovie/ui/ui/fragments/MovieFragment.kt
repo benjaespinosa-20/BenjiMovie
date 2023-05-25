@@ -12,23 +12,25 @@ import com.benjaminespi.benjimovie.databinding.FragmentMovieBinding
 import com.benjaminespi.benjimovie.ui.utils.Resource
 import com.benjaminespi.benjimovie.ui.data.model.Movie
 import com.benjaminespi.benjimovie.ui.data.remote.MovieDataSource
-import com.benjaminespi.benjimovie.ui.viewmodel.MovieViewModel
-import com.benjaminespi.benjimovie.ui.viewmodel.MovieViewModelFactory
+import com.benjaminespi.benjimovie.ui.ui.viewmodel.MovieViewModel
 import com.benjaminespi.benjimovie.ui.repository.MovieRepositoryImplement
-import com.benjaminespi.benjimovie.ui.repository.RetrofitClient
 import com.benjaminespi.benjimovie.ui.ui.adapter.MovieAdapter
 import com.benjaminespi.benjimovie.ui.ui.adapter.PlayingNowConcatAdapter
 import com.benjaminespi.benjimovie.ui.ui.adapter.PopularConcatAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieClickListener {
+@AndroidEntryPoint
+class MovieFragment: Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieClickListener {
     private lateinit var binding: FragmentMovieBinding
+    private val viewModel: MovieViewModel by viewModels()
 
-    //inyeccion de dependencias
-    private val viewModel by viewModels<MovieViewModel>{
+    //inyeccion de dependencias manual
+    /*private val viewModel by viewModels<MovieViewModel>{
         MovieViewModelFactory(MovieRepositoryImplement(
         MovieDataSource(RetrofitClient.webservice)
     ))
-    }
+    }*/
 
     private lateinit var concatAdapter: ConcatAdapter
 
@@ -38,7 +40,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
 
         concatAdapter = ConcatAdapter()
 
-        viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.fetchMainScreenMovies().observe(viewLifecycleOwner) { result ->
             when(result){
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -56,7 +58,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
                     binding.progressBar.visibility = View.GONE
                 }
             }
-        })
+        }
 
     }
 
@@ -64,6 +66,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
         val action = MovieFragmentDirections.actionMovieFragmentToDetailFragment(
             movie.poster_path, movie.backdrop_path, movie.vote_average.toFloat(), movie.vote_count, movie.overview,
             movie.title, movie.original_language, movie.release_date)
+
         findNavController().navigate(action)
     }
 

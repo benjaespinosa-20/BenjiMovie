@@ -7,9 +7,11 @@ import androidx.navigation.fragment.navArgs
 import com.benjaminespi.benjimovie.R
 import com.benjaminespi.benjimovie.databinding.FragmentDetailBinding
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 
 //import java.lang.reflect.Modifier
 
+@AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private lateinit var binding: FragmentDetailBinding
